@@ -211,7 +211,7 @@
  $wpbc_all_translations[] = __('Type', 'booking'); 
  $wpbc_all_translations[] = __('Help', 'booking'); 
  $wpbc_all_translations[] = __('Email sent to ', 'booking'); 
- $wpbc_all_translations[] = __('Email had not sent. Some error occuered.', 'booking'); 
+ $wpbc_all_translations[] = __('Email was not sent. An error occurred.', 'booking'); 
  $wpbc_all_translations[] = __('Settings saved.', 'booking'); 
  $wpbc_all_translations[] = __('If empty then title defined as WordPress', 'booking'); 
  $wpbc_all_translations[] = __('Email different from website DNS, its can be a reason of not delivery emails. Please use the email withing the same domain as your website!', 'booking'); 
@@ -244,7 +244,9 @@
  $wpbc_all_translations[] = __('Upgrade to higher versions', 'booking'); 
  $wpbc_all_translations[] = __('Form Field Configuration', 'booking'); 
  $wpbc_all_translations[] = __('You can add %sTime Slots%s to booking form, by activating and configure %sTime Slots%s field in booking form (below) or by adding this field from (above) toolbar.', 'booking'); 
+ $wpbc_all_translations[] = __('Title of send button', 'booking'); 
  $wpbc_all_translations[] = __('Send', 'booking'); 
+ $wpbc_all_translations[] = __('Enter %stitle of submit button%s in the booking form', 'booking'); 
  $wpbc_all_translations[] = __('Reset to default form', 'booking'); 
  $wpbc_all_translations[] = __('Do you really want to do this ?', 'booking'); 
  $wpbc_all_translations[] = __('Add New Field', 'booking'); 
@@ -994,6 +996,4 @@
  $wpbc_all_translations[] = __('February', 'booking'); 
  $wpbc_all_translations[] = __('March', 'booking'); 
  $wpbc_all_translations[] = __('April', 'booking'); 
- $wpbc_all_translations[] = __('May', 'booking'); 
- $wpbc_all_translations[] = __('June', 'booking'); 
  } 

@@ -4,8 +4,8 @@ Donate link: https://wpbookingcalendar.com/buy/
 Tags: booking calendar, booking system, availability calendar, events calendar, appointments , booking form, reservation, availability, oplugins, calendar, Booking Calendar, ical
 Requires at least: 4.0
 Requires PHP: 5.2.4
-Tested up to: 5.6
-Stable tag: 8.8
+Tested up to: 5.7
+Stable tag: 8.8.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,7 +13,7 @@ Booking Calendar - original 1st booking plugin for WordPress. Easily receive res
 
 == Description ==
 
-####The original "**Booking Calendar**" plugin is the 1st booking system for WordPress, **downloaded over 1,750,000** times [since 2009](https://wpbookingcalendar.com/changelog/).
+####The original "**Booking Calendar**" plugin is the 1st booking system for WordPress, **downloaded over 1,830,000** times [since 2009](https://wpbookingcalendar.com/changelog/).
 
 **Booking Calendar** plugin enable awesome **booking system** for your site. Simply show availability and receive bookings for your property or service in easy to use booking system with clean and smooth interface.
 
@@ -39,6 +39,7 @@ Administrator *(and also your visitors)* will **receive notification email(s)** 
 - Very **flexible** functionality. Fit to very wide range of business.
 - All bookings and settings are stored **in your DB**. You don't need third party account(s).
 - Sleek and **customizable design** of calendars, for fitting to your site design.
+- Nice time picker for time slots bookings
 - **Responsive** front end and back end design.
 - An easy to use **Booking Admin Panel** that displays bookings in **Calendar Overview** or **Listing Table** and lets you manages bookings.
 - **Easy to install and integrate** into your site. *For example, using booking button in edit toolbar for configuration and inserting booking shortcode into post or page.*
@@ -51,7 +52,7 @@ Booking Calendar is built to work out of the box. Just activate it and insert bo
 
 **Make New Bookings on Client side.**
 
-- **Timeslots bookings** in Booking Calendar Free version, as well. Ability to receive simple bookings for specific time-slots (times during selected day).
+- **Timeslots bookings** in Booking Calendar Free version, as well. Ability to receive simple bookings for specific time-slots (times during selected day). Selection time slots in time picker or in dropdown list.
 - Make bookings in **friendly booking interface** - select the date(s) and fill booking form fields.
 - **Prevent of double booking** for already reserved days (1 booking per 1 day) or **allow multiple (unlimited) bookings per same day** in same calendar.
 - Set **pending days as available** in booking form. You can receive as many bookings as you need to and stop receiving bookings on specific date(s), when you approve some booking on specific date(s).
@@ -168,36 +169,36 @@ Please see [FAQ](https://wpbookingcalendar.com/faq/).
 = Support Languages =
 
 - English
-- Norwegian [99% Completed]
-- Spanish [99% Completed]
-- German [99% Completed]
-- French [99% Completed]
-- Arabic [99% Completed]
-- Dutch [99% Completed]
-- Polish [99% Completed]
 - Swedish [99% Completed]
-- Slovenian [98% Completed]
-- Brazilian Portuguese [99% Completed]
-- Hungarian [98% Completed]
+- Norwegian [98% Completed]
+- Spanish [98% Completed]
+- German [98% Completed]
+- French [98% Completed]
+- Arabic [98% Completed]
+- Dutch [98% Completed]
+- Polish [98% Completed]
+- Slovenian [97% Completed]
+- Brazilian Portuguese [98% Completed]
+- Hungarian [97% Completed]
 - Romanian [96% Completed]
-- Italian [95% Completed]
-- Finnish [95% Completed]
-- Danish [93% Completed]
-- Greek [93% Completed]
-- Bulgarian [93% Completed]
-- Turkish [93% Completed]
-- Chinese (Taiwan) [91% Completed]
-- Russian [89% Completed]
-- Portugal [88% Completed]
-- Galician (Spanish) [88% Completed]
-- Thai [88% Completed]
+- Italian [94% Completed]
+- Finnish [94% Completed]
+- Danish [92% Completed]
+- Greek [92% Completed]
+- Bulgarian [92% Completed]
+- Turkish [92% Completed]
+- Chinese (Taiwan) [90% Completed]
+- Russian [88% Completed]
+- Portugal [87% Completed]
+- Galician (Spanish) [87% Completed]
+- Thai [87% Completed]
 - Hebrew [85% Completed]
 - Chinese [84% Completed]
 - Ukrainian [84% Completed]
 - Czech [72% Completed]
 - Slovak [72% Completed]
 - Croatian [72% Completed]
-- Catalan [72% Completed]
+- Catalan [71% Completed]
 - Belorussian [9% Completed]
 
 Please recheck the status of each translation, before using plugin.
@@ -228,6 +229,26 @@ Please see [Video Guides](https://wpbookingcalendar.com/help/).
 14. **Time picker** for **times slots selection** in the booking form.
 
 == Changelog ==
+
+= 8.8.1 =
+- Changes in **all** versions:
+	* **New**. Configure **title of submit button** in the booking form. (8.8.1.14)
+	* **Support**. WordPress 5.7 support (8.8.1.10)
+	* **Translation** Swedish translation [100% completed] by Mikael Göransson
+ 	* **Improvement**. **Empty Trash** button working in more fast optimized way. Emails not not send about the deleting bookings from the trash in this case. (8.8.1.1)
+ 	* **Fix**. Issue of selection or deselection of all checkboxes, if clicked at the head of table at "master checkbox" in booking Listing or in resource list tables (8.8.1.15)
+ 	* **Fix**. TypeError: inp_value.trim is not a function. (In 'inp_value.trim()', 'inp_value.trim' is undefined) (8.8.1.3)
+ 	* **Fix**. Issue of having spaces between booking rows in Booking Listing page (8.8.1.10)
+ 	* **Fix**. Issue of not selecting checkboxes if clicked on lablels in some situations. (8.8.1.11)
+- Changes in **Personal / Business Small / Business Medium / Business Large / MultiUser** versions:
+	* **New**. Stripe payment methods: **Alipay, iDEAL, Bancontact, giropay, P24, EPS, Sofort, SEPA Direct Debit, GrabPay, FPX, Bacs Direct Debit** (8.8.1.12) *(Business Small/Medium/Large,  MultiUser)*
+	* **New**. Ability to use **custom fields** shortcodes **in the search results** at the Booking > Settings > Search page, like [booking_city] for showing such additional parameters in search results. Please check more here https://wpbookingcalendar.com/faq/selecting-tags-in-search-form/ (8.8.1.4) *(Business Large, MultiUser)*
+	* **Improvement** Do  not check  about required fields in "Wizard (several  steps)" booking form  configuration,  while going to previous step. (8.8.1.5) *(Personal, Business Small/Medium/Large, MultiUser)*
+ 	* **Fix**. Issue of not updating deposit  and balance cost  for the booking,  if activated this option "Do not show payment form, after submit booking form". (8.8.1.9) *(Business Small/Medium/Large, MultiUser)*
+ 	* **Fix**. Update payment method names for Payment Service Provider 'Sisow' - iDEAL. Some of payment methods was old or have old names. (8.8.1.8) *(Personal, Business Small/Medium/Large, MultiUser)*
+ 	* **Fix**. Show warning 'The booked dates already in the past.', if visitor try to cancel or edit own booking, that already in the past. (8.8.1.2) *(Personal, Business Small/Medium/Large, MultiUser)*
+ 	* **Fix**. Showing incorrectly  Booking Listing  page , if "Content of booking fields data" form start from  <div> html  tag. (8.8.1.6) *(Personal, Business Small/Medium/Large, MultiUser)*
+ 	* **Under Hub**. Ability to set page exception to not apply change over days functionality at the page with URI  '/page-no-change-over/'. It's possible to change this URL in the file ../wp-content/plugins/{Booking Calendar Folder}/inc/_bs/biz_s.php at  this code: $exception_pages = array( '/page-no-change-over/' ); (8.8.1.7) *(Business Small/Medium/Large, MultiUser)*
 
 = 8.8 =
 - Changes in **all** versions:

@@ -446,7 +446,7 @@ function wpbc_email_sending_error( $wp_error_object, $error_description = '' ) {
     
     if ( ! empty( $error_description ) ) {
 
-        $error_description = '' . __('Error', 'booking')  . '! ' . __('Email had not sent. Some error occuered.', 'booking') .  ' ' . $error_description;
+        $error_description = '' . __('Error', 'booking')  . '! ' . __('Email was not sent. An error occurred.', 'booking') .  ' ' . $error_description;
         
         // Admin side
         if (  function_exists( 'wpbc_show_message' ) ) {

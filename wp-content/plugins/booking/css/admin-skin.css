@@ -152,3 +152,22 @@
 .wpbc_page .wpdevelop .wpbc-listing-collumn.col-sm-3 .field-checkbox input[type="checkbox"] {
 	margin-top:5px;
 }
+/* booking resource slection  list - selected booking resource in a selectbox*/
+.chzn-container .chzn-results li.highlighted {
+	background: #3875d7;
+}
+
+.chzn-container-multi .chzn-choices li.search-choice {
+	margin: 3px 5px 3px 0;
+	border: 1px solid #ccc;
+	background: #eeeeee !important;
+}
+.chzn-container-multi .chzn-choices li.search-field input[type="text"] {
+	margin: 0;
+}
+.chzn-container-multi .chzn-choices {
+	min-height: 31px !important;
+}
+.chzn-container-multi .chzn-choices .search-choice a.search-choice-close {
+    font-size: 10px;
+}

@@ -177,7 +177,6 @@ class wpdev_booking {
             $dates_approve = apply_bk_filter('get_bk_dates', $wpdb->get_results( $sql_req ), $approved, 0,$bk_type );
         }
 
-//debuge($sql_req);
         //FixIn: 6.1.1.18
         $prior_check_out_date = false;
         if ( ! empty( $dates_approve ) )
@@ -201,7 +200,6 @@ class wpdev_booking {
                 }
             }
         //FixIn: 6.1.1.18   End
-
         return    array($dates_array,$time_array); 
     }
 

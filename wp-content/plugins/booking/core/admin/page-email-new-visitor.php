@@ -813,7 +813,7 @@ class WPBC_Settings_Page_Email_NewVisitor extends WPBC_Page_Structure {
             if ( $email_result ) 
                 wpbc_show_message ( __('Email sent to ', 'booking') . $this->mail_api()->get_from__email_address() , 5 );             
             else 
-                wpbc_show_message ( __('Email had not sent. Some error occuered.', 'booking'), 5 ,'error' );    
+                wpbc_show_message ( __('Email was not sent. An error occurred.', 'booking'), 5 ,'error' );    
         }
     }
     

@@ -325,49 +325,73 @@ function wpbc_ajax_EMPTY_TRASH() {			//FixIn: 8.5.2.24
 	$user_id = intval( $_POST['user_id'] );
     make_bk_action('check_multiuser_params_for_client_side_by_user_id', $user_id );
 
+	//FixIn: 8.8.0.1
+	if ( true ) {
 
-    $sql = "SELECT * FROM {$wpdb->prefix}booking as bk WHERE bk.trash = 1";
-
-	$sql = apply_bk_filter('update_where_sql_for_getting_bookings_in_multiuser', $sql ,  $user_id );					// Get booking resources of this user only: $user_id
-
-	$bookings_in_trash = $wpdb->get_results( $sql );			//Get ID of all bookings in a trash.
-
-//debuge($sql, $bookings_in_trash );
-
-    $bookings_id_in_trash_arr = array();
-
-    foreach ( $bookings_in_trash as $booking_obj ) {
-		$bookings_id_in_trash_arr[] = $booking_obj->booking_id;
-	}
-
-	if ( ! empty( $bookings_id_in_trash_arr ) ) {
-
-	    $bookings_id_in_trash_str = implode( ',', $bookings_id_in_trash_arr );
-
-				$is_send_emeils = 0;		// Set here to  1,  if need to  send emails after  Empty Trash
-				if ( ! empty( $is_send_emeils ) ) {
-					$approved_id_str = wpbc_clean_like_string_for_db( $bookings_id_in_trash_str );
-					wpbc_send_email_deleted( $approved_id_str, $is_send_emeils, __( 'Empty Trash', 'booking' ) );
-				}
-
-	    if ( false === $wpdb->query( "DELETE FROM {$wpdb->prefix}bookingdates WHERE booking_id IN ({$bookings_id_in_trash_str})" ) ) {
-		    ?>
+		if ( false === $wpdb->query( "DELETE FROM {$wpdb->prefix}bookingdates WHERE booking_id IN (SELECT booking_id FROM {$wpdb->prefix}booking as bk WHERE bk.trash = 1 )" ) ) {
+			?>
 			<script type="text/javascript">
 				var my_message = '<?php echo html_entity_decode( esc_js( get_debuge_error( 'Error during deleting dates in DB', __FILE__, __LINE__ ) ), ENT_QUOTES ); ?>';
 				wpbc_admin_show_message( my_message, 'error', 30000 );
 			</script> <?php
-		    die();
-	    }
+			die();
+		}
 
-	    if ( false === $wpdb->query( "DELETE FROM {$wpdb->prefix}booking WHERE booking_id IN ({$bookings_id_in_trash_str})" ) ) {
-		    ?>
+		if ( false === $wpdb->query( "DELETE FROM {$wpdb->prefix}booking WHERE trash = 1" ) ) {
+			?>
 			<script type="text/javascript">
 				var my_message = '<?php echo html_entity_decode( esc_js( get_debuge_error( 'Error during deleting booking in  DB', __FILE__, __LINE__ ) ), ENT_QUOTES ); ?>';
 				wpbc_admin_show_message( my_message, 'error', 30000 );
 			</script> <?php
-		    die();
-	    }
-    }
+			die();
+		}
+
+	} else {
+
+			$sql = "SELECT * FROM {$wpdb->prefix}booking as bk WHERE bk.trash = 1";
+
+			$sql = apply_bk_filter('update_where_sql_for_getting_bookings_in_multiuser', $sql ,  $user_id );					// Get booking resources of this user only: $user_id
+
+			$bookings_in_trash = $wpdb->get_results( $sql );			//Get ID of all bookings in a trash.
+
+		//debuge($sql, $bookings_in_trash );
+
+			$bookings_id_in_trash_arr = array();
+
+			foreach ( $bookings_in_trash as $booking_obj ) {
+				$bookings_id_in_trash_arr[] = $booking_obj->booking_id;
+			}
+
+			if ( ! empty( $bookings_id_in_trash_arr ) ) {
+
+				$bookings_id_in_trash_str = implode( ',', $bookings_id_in_trash_arr );
+
+						$is_send_emeils = 0;		// Set here to  1,  if need to  send emails after  Empty Trash
+						if ( ! empty( $is_send_emeils ) ) {
+							$approved_id_str = wpbc_clean_like_string_for_db( $bookings_id_in_trash_str );
+							wpbc_send_email_deleted( $approved_id_str, $is_send_emeils, __( 'Empty Trash', 'booking' ) );
+						}
+
+				if ( false === $wpdb->query( "DELETE FROM {$wpdb->prefix}bookingdates WHERE booking_id IN ({$bookings_id_in_trash_str})" ) ) {
+					?>
+					<script type="text/javascript">
+						var my_message = '<?php echo html_entity_decode( esc_js( get_debuge_error( 'Error during deleting dates in DB', __FILE__, __LINE__ ) ), ENT_QUOTES ); ?>';
+						wpbc_admin_show_message( my_message, 'error', 30000 );
+					</script> <?php
+					die();
+				}
+
+				if ( false === $wpdb->query( "DELETE FROM {$wpdb->prefix}booking WHERE booking_id IN ({$bookings_id_in_trash_str})" ) ) {
+					?>
+					<script type="text/javascript">
+						var my_message = '<?php echo html_entity_decode( esc_js( get_debuge_error( 'Error during deleting booking in  DB', __FILE__, __LINE__ ) ), ENT_QUOTES ); ?>';
+						wpbc_admin_show_message( my_message, 'error', 30000 );
+					</script> <?php
+					die();
+				}
+			}
+	}
+
 	?><script type="text/javascript">
 		<?php foreach ($bookings_id_in_trash_arr as $bk_id) { ?>
 			set_booking_row_deleted_in_timeline(<?php echo $bk_id ?>);

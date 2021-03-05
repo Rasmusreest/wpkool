@@ -207,10 +207,42 @@ class WPBC_Page_SettingsFormFieldsFree extends WPBC_Page_Structure {
                 ?><input type="hidden" name="reset_to_default_form" id="reset_to_default_form" value="" /><?php 
                 ?><input type="hidden" name="booking_form_structure_type" id="booking_form_structure_type" value="<?php echo get_bk_option( 'booking_form_structure_type' ); ?>" /><?php
 
-                $this->show_booking_form_fields_table( $booking_form_structure );
+				$this->show_booking_form_fields_table( $booking_form_structure );
+
+				?><div class="clear" style="height:10px;"></div><?php
+
+				if (  true ){        //FixIn: 8.8.1.14
+
+					$default_options_values = wpbc_get_default_options();
+
+					?><table class="form-table"><?php
+
+					$field_name = 'booking_send_button_title';
+					$form_title_value = ( empty( get_bk_option( 'booking_send_button_title' ) ) ? $default_options_values['booking_send_button_title'] : get_bk_option( 'booking_send_button_title' ) );
+
+					WPBC_Settings_API::field_text_row_static(   $field_name . '_name'
+																, array(
+																		'type'              => 'text'
+																		, 'title'             => __( 'Title of send button' ,'booking' )
+																		, 'disabled'          => false
+																		, 'class'             => ''
+																		, 'css'               => 'width:100%'
+																		, 'placeholder'       =>  __( 'Send', 'booking' )
+																		, 'description'       => sprintf(__('Enter %stitle of submit button%s in the booking form' ,'booking'),'<b>','</b>')
+																		, 'group'             => 'form'
+																		, 'tr_class'          => 'wpbc_send_button_title'
+																		, 'only_field'        => false
+																		, 'description_tag'   => 'p'
+																		, 'value' 			  => $form_title_value             // 'Send'
+																		, 'attr'              => array()
+																)
+																, true
+															);
+					?></table><?php
+				}
 
                 ?>
-                <div class="clear" style="height:20px;"></div>
+                <div class="clear" style="height:5px;"></div>
                 <input type="submit" value="<?php _e('Save Changes','booking'); ?>" class="button button-primary wpbc_submit_button" />  
             </form>
         </span>
@@ -241,6 +273,9 @@ class WPBC_Page_SettingsFormFieldsFree extends WPBC_Page_Structure {
 
         // Update booking form structure
         update_bk_option( 'booking_form_structure_type',  WPBC_Settings_API::validate_text_post_static( 'booking_form_structure_type' )  );
+
+        update_bk_option( 'booking_send_button_title',  WPBC_Settings_API::validate_text_post_static( 'booking_send_button_title_name' )  );
+
 
         $skip_obligatory_field_types = array( 'calendar', 'submit', 'captcha', 'email' );
 
@@ -295,14 +330,14 @@ class WPBC_Page_SettingsFormFieldsFree extends WPBC_Page_Structure {
                                     , 'obligatory' => 'On'
                                     , 'active'   => 'On'
                                     , 'required' => 'On'
-                                    , 'label'    => __('Send', 'booking')
+                                    , 'label'    => get_bk_option( 'booking_send_button_title' )  						//FixIn:  8.8.1.14		// __('Send', 'booking')
                                 );
 //debuge($visual_form_structure);
         update_bk_option( 'booking_form_visual',  $visual_form_structure  );
                         
         update_bk_option( 'booking_form',      str_replace( '\\n\\', '', $this->get_form_in__shortcodes( $visual_form_structure ) ) );
         update_bk_option( 'booking_form_show', str_replace( '\\n\\', '', $this->get_form_show_in__shortcodes() ) );
-    
+//debuge(get_bk_option( 'booking_form') );
         wpbc_show_changes_saved_message();
     }
 
@@ -418,7 +453,7 @@ class WPBC_Page_SettingsFormFieldsFree extends WPBC_Page_Structure {
                                         , 'obligatory' => 'On'
                                         , 'active'   => 'On'
                                         , 'required' => 'On'
-                                        , 'label'    => __('Send', 'booking')
+                                        , 'label'    => get_bk_option( 'booking_send_button_title' )    				//FixIn:  8.8.1.14		// __('Send', 'booking')
                                     );
 
         return $visual_form_structure;                
@@ -576,7 +611,11 @@ class WPBC_Page_SettingsFormFieldsFree extends WPBC_Page_Structure {
         }
 
         $my_form.='<div class="form-group">[captcha]</div>' . "\n";
-		$my_form.='<div class="form-group"><button class="btn btn-default" type="button" onclick="mybooking_submit(this.form,'.$my_boook_type.',\''.wpbc_get_booking_locale().'\');" >'.__('Send' ,'booking').'</button></div>' . "\n";
+        //FixIn:  8.8.1.14
+        $submit_button_title = str_replace( '"','', html_entity_decode( esc_js( apply_bk_filter( 'wpdev_check_for_active_language', get_bk_option( 'booking_send_button_title' ) ) ),ENT_QUOTES) );
+		$my_form.='<div class="form-group"><button class="btn btn-default" type="button" onclick="mybooking_submit(this.form,'.$my_boook_type.',\''.wpbc_get_booking_locale().'\');" >'
+				  		. $submit_button_title
+				  . '</button></div>' . "\n";
 
 	    //FixIn: 8.0.1.5
 	    $my_form .= '  </div>' . "\n";		// .wpbc_structure_form					|| .wpbc_structure_submit
@@ -701,7 +740,11 @@ class WPBC_Page_SettingsFormFieldsFree extends WPBC_Page_Structure {
 
 
         $my_form.='     <p>[captcha]</p>' . "\n";                    
-        $my_form.='     <p>[submit class:btn "Send"]</p>' . "\n";
+        //$my_form.='     <p>[submit class:btn "Send"]</p>' . "\n";
+
+        //FixIn:  8.8.1.14
+        $submit_button_title = str_replace( '"','', html_entity_decode( esc_js( apply_bk_filter( 'wpdev_check_for_active_language', get_bk_option( 'booking_send_button_title' ) ) ),ENT_QUOTES) );
+		$my_form.='     <p>[submit class:btn "' . $submit_button_title .'"]</p>' . "\n";
 
 	    //FixIn: 8.0.1.5
 	    $my_form .= '  </div>' . "\n";		// .wpbc_structure_form

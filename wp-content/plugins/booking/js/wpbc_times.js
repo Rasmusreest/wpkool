@@ -845,7 +845,7 @@ function wpbc_is_time_field_in_booking_form( resource_id, form_elements ){						
 		//here is not range selections
 		all_dates = get_first_day_of_selection( all_dates );
 		if ( (bk_days_selection_mode == 'single')  ){   // Only single day selections here		//FixIn: 8.7.11.6
-
+		//if ( ( bk_days_selection_mode == 'single' ) || ( bk_days_selection_mode == 'multiple' ) ) {
 			var current_single_day_selections = all_dates.split( '.' );
 			td_class = (current_single_day_selections[ 1 ] * 1) + '-' + (current_single_day_selections[ 0 ] * 1) + '-' + (current_single_day_selections[ 2 ] * 1);
 			var times_array = [];

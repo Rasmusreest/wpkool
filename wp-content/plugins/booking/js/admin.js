@@ -669,7 +669,8 @@ function wpbc_import_gcal_events( us_id
 
 		// toggle "check all" checkboxes
 		var unchecked = $(this).closest('.wpbc_selectable_body').find(':checkbox').filter(':visible:enabled').not(':checked');
-		$(this).closest('.wpbc_selectable_table').children('.wpbc_selectable_head, .wpbc_selectable_foot').find(':checkbox').prop('checked', function() {
+		//FixIn: 8.8.1.15
+		$(this).closest('.wpbc_selectable_table').find('.wpbc_selectable_head, .wpbc_selectable_foot').find(':checkbox').prop('checked', function() {
 			return ( 0 === unchecked.length );
 		});
 
@@ -684,10 +685,9 @@ function wpbc_import_gcal_events( us_id
 			$table = $this.closest( '.wpbc_selectable_table' ),
 			controlChecked = $this.prop('checked'),
 			toggle = event.shiftKey || $this.data('wp-toggle');
-
-		$table.children( '.wpbc_selectable_body' ).filter(':visible')
+        //FixIn: 8.8.1.15
+		$table.find( '.wpbc_selectable_body' ).filter(':visible')
                         .find('.check-column').find(':checkbox')
-			//.children().children('.check-column').find(':checkbox')
 			.prop('checked', function() {
 				if ( $(this).is(':hidden,:disabled') ) {
 					return false;
@@ -701,10 +701,9 @@ function wpbc_import_gcal_events( us_id
 
 				return false;
 			});
-
-		$table.children('.wpbc_selectable_head,  .wpbc_selectable_foot').filter(':visible')
+        //FixIn: 8.8.1.15
+		$table.find('.wpbc_selectable_head,  .wpbc_selectable_foot').filter(':visible')
                         .find('.check-column').find(':checkbox')
-			//.children().children('.check-column').find(':checkbox')
 			.prop('checked', function() {
 				if ( toggle ) {
 					return false;

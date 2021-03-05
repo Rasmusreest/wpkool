@@ -159,7 +159,7 @@ class WPBC_Booking_Listing_Table {
         $availbale_locales_in_system = get_available_languages();
         $print_data = apply_bk_filter( 'wpbc_print_get_header', array( array() ) );   // P        
         $bk_key = 0;
-        
+
         foreach ( $this->bookings as $bk ) {            
             $bk_key++;
 

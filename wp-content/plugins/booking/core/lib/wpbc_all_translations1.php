@@ -1,4 +1,6 @@
 <?php  function wpbc_all_translations2() { $wpbc_all_translations = array(); 
+ $wpbc_all_translations[] = __('May', 'booking'); 
+ $wpbc_all_translations[] = __('June', 'booking'); 
  $wpbc_all_translations[] = __('July', 'booking'); 
  $wpbc_all_translations[] = __('August', 'booking'); 
  $wpbc_all_translations[] = __('September', 'booking'); 
@@ -847,4 +849,13 @@
  $wpbc_all_translations[] = __('columns', 'booking'); 
  $wpbc_all_translations[] = __('2 columns with  times', 'booking'); 
  $wpbc_all_translations[] = __('Time slots', 'booking'); 
+ $wpbc_all_translations[] = __('The booked dates already in the past', 'booking'); 
+ $wpbc_all_translations[] = __('Card', 'booking'); 
+ $wpbc_all_translations[] = __('Payment Methods', 'booking'); 
+ $wpbc_all_translations[] = __('Select one or several payment methods.', 'booking'); 
+ $wpbc_all_translations[] = __('Use Ctrl button to select multiple options.', 'booking'); 
+ $wpbc_all_translations[] = __('Different payment methods require different conditions. Some payment methods require selection of EUR currency, other available only in specific countries.', 'booking'); 
+ $wpbc_all_translations[] = __('can only be charged in', 'booking'); 
+ $wpbc_all_translations[] = __('available only  for countries', 'booking'); 
+ $wpbc_all_translations[] = __('require activation in your Stripe dashboard', 'booking'); 
  } 

@@ -773,7 +773,8 @@ function mybooking_submit( submit_form , bk_type, wpdev_active_locale){
                             return;                            
                         }
                     }
-                    if  ( (element.type !='checkbox') && (element.type !='radio') && ( inp_value.trim() === '')) {       //FixIn:7.0.1.39       //FixIn: 8.7.11.12
+
+                    if (  (element.type != 'checkbox') && (element.type != 'radio') && ( '' === wpbc_trim( inp_value ) )  ){       //FixIn: 8.8.1.3   //FixIn:7.0.1.39       //FixIn: 8.7.11.12
                         showErrorMessage( element , message_verif_requred, false );   		//FixIn: 8.5.1.3
                         return;
                     }
@@ -1202,6 +1203,27 @@ function makeScroll(object_name) {
 }
 
 
+//FixIn: 8.8.1.3
+/**
+ * Trim  strings and array joined with  (,)
+ *
+ * @param string_to_trim   string / array
+ * @returns string
+ */
+function wpbc_trim( string_to_trim ){
+
+    if ( Array.isArray( string_to_trim ) ){
+        string_to_trim = string_to_trim.join( ',' );
+    }
+
+    if ( 'string' == typeof (string_to_trim) ){
+        string_to_trim = string_to_trim.trim();
+    }
+
+    return string_to_trim;
+}
+
+
 function wpdev_in_array (array_here, p_val) {
    for(var i = 0, l = array_here.length; i < l; i++) {
        if(array_here[i] == p_val) {
@@ -1366,7 +1388,7 @@ function wpbc_check_errors_in_booking_form( bk_type ) {
 
 							var inp_value = jQuery( el ).val();
 
-							if ( '' === inp_value.trim() ){               //FixIn: 8.7.11.12
+                            if ( '' === wpbc_trim( inp_value ) ){                                                       //FixIn: 8.8.1.3        //FixIn: 8.7.11.12
 								showErrorMessage( el, message_verif_requred, is_error_in_field );
 								is_error_in_field = true;    // Error
 							}
@@ -1506,14 +1528,19 @@ function bk_form_step_click( el ){
  * @param step_num
  * @returns {boolean}
  */
-function wpbc_wizard_step( el, step_num ){
+function wpbc_wizard_step( el, step_num, step_from ){
     var br_id = jQuery( el ).closest( 'form' ).find( 'input[name^="bk_type"]' ).val();
-    if ( 1 != step_num ){                                                                       //FixIn: 8.7.7.8
-        var is_error = wpbc_check_errors_in_booking_form( br_id );
-        if ( is_error ){
-            return false;
+
+    //FixIn: 8.8.1.5
+    if ( ( undefined == step_from ) || ( step_num > step_from ) ){
+        if ( 1 != step_num ){                                                                       //FixIn: 8.7.7.8
+            var is_error = wpbc_check_errors_in_booking_form( br_id );
+            if ( is_error ){
+                return false;
+            }
         }
     }
+
     if ( wpbc_is_some_elements_visible( br_id, ['rangetime', 'durationtime', 'starttime', 'endtime'] ) ){
         if ( is_this_time_selections_not_available( br_id, document.getElementById( 'booking_form' + br_id ) ) ){
             return false;

@@ -720,6 +720,29 @@ function wpbc_is_today_date( $some_day ) {
 }
 
 
+//FixIn: 8.8.1.2
+/**
+ * Check if this date in past
+ *
+ * @param string $some_day  : '2015-05-29'
+ * @return boolean          : true | false
+ */
+function wpbc_is_date_in_past( $some_day ) {
+
+	$some_day_d = date( 'm.d.Y', mysql2date( 'U', $some_day ) );
+	$some_array = explode( '.', $some_day_d );
+	$some_day   = mktime( 0, 0, 0, $some_array[0], ( $some_array[1] + 1 ), $some_array[2] );
+
+	$today_day = time();
+
+	if ( $today_day > $some_day ) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+
 /**
 	 * Get days in short format view
  * 

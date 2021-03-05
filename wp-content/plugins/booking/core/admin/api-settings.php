@@ -356,7 +356,22 @@ class  WPBC_Settings_API_General extends WPBC_Settings_API {
                                 , 'description_tag' => 'p'    
                                 , 'group'       => 'form'
             );       
-        
+
+//        if (  class_exists( 'wpdev_bk_personal' ) ){        //FixIn: 8.8.1.14
+//
+//	        $this->fields['booking_send_button_title'] = array(
+//	                                'type'          => 'text'
+//	                                , 'default'     => $default_options_values['booking_send_button_title']             // 'Send'
+//	                                , 'placeholder' => __( 'Send', 'booking' )
+//	                                , 'title'       => __( 'Title of send button' ,'booking' )
+//	                                , 'description' => sprintf(__('Enter %stitle of submit button%s in the booking form' ,'booking'),'<b>','</b>')
+//	                                , 'description_tag' => 'p'
+//	                                , 'css'         => 'width:100%'
+//	                                , 'group'       => 'form'
+//	                                , 'tr_class'    => 'wpbc_send_button_title'
+//	                        );
+//		}
+
         // <editor-fold     defaultstate="collapsed"                        desc=" L e g e n d    I t e m s "  >
         // Legend Items ////////////////////////////////////////////////////////
         $this->fields['booking_is_show_legend'] = array(   

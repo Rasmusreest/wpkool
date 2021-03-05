@@ -375,7 +375,8 @@ table.wpbc_sort_table {
     height: 0;
 }
 .clearfix-height {
-    display: inline-block;
+    /*display: inline-block;*/
+    display: block;     /*   //FixIn: 8.8.1.10 */
 }
 html[xmlns] .clearfix-height {
     display: block;

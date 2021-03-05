@@ -26,7 +26,7 @@ if ( ! defined( 'WP_BK_CHECK_OUT_MINUS_DAY_SEARCH' ) ) {        define( 'WP_BK_C
 ////////////////////////////////////////////////////////////
 //   SYSTEM  CONSTANTS                        //////////////
 ////////////////////////////////////////////////////////////
-if ( ! defined( 'WP_BK_MINOR_UPDATE' ) ) {      define( 'WP_BK_MINOR_UPDATE',   ! true ); }
+if ( ! defined( 'WP_BK_MINOR_UPDATE' ) ) {      define( 'WP_BK_MINOR_UPDATE',   true ); }
 if ( ! defined( 'WP_BK_RESPONSE' ) ) {          define( 'WP_BK_RESPONSE',       false ); }
 if ( ! defined( 'WP_BK_BETA_DATA_FILL' ) ) {    define( 'WP_BK_BETA_DATA_FILL', 0 ); }                                  // Set 0 for no filling or 2 for 241 bookings or more for more
 

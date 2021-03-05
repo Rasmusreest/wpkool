@@ -744,10 +744,10 @@ function wpbc_get_bookings_objects( $args ){
                                         )
                                 );
 //debuge($cont);
-        $search  = array( "'(<br[ ]?[/]?>)+'si", "'(<p[ ]?[/]?>)+'si", "'(<div[ ]?[/]?>)+'si" );
+        $search  = array( "'(<br[ ]?[/]?>)+'si", "'(<[/]?p[ ]?>)+'si"/*, "'(<[/]?div[ ]?>)+'si"*/ );                        //FixIn: 8.8.1.6
         $replace = array( "&nbsp;&nbsp;", " &nbsp; ", " &nbsp; " );
         $cont['content'] = preg_replace( $search, $replace, $cont['content'] );
-//debuge( $cont);        
+//debuge( htmlentities(  $cont['content'] ) );die;
         $bookings[$booking->booking_id]->form_show = $cont['content'];
         unset( $cont['content'] );
         $bookings[$booking->booking_id]->form_data = $cont;
